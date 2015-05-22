@@ -25,15 +25,21 @@ def check(before=None):
 
     return items
 
+def get_latest(k, redis_client):
+    latest = redis_client.zrevrange(k, 0, 0)
+    if len(latest) > 0:
+        return latest[0]
+
+def post_to_slack(url):
+    pass
 
 r = redis.from_url(config.redis_url)
 k = "{}:threads".format(config.redis_prefix)
 
-latest = r.zrevrange(k, 0, 0)
-if len(latest) == 0:
-    latest = None
-else:
-    latest = latest[0]
+latest = get_latest(k, r)
 
 for thread in check(latest):
-    r.zadd("{}:threads".format(config.redis_prefix), thread["id"], int(thread["created_utc"]))
+    r.zadd(k, thread.id, int(thread.created_utc))
+
+latest = get_latest(k, r)
+post_to_slack(config.thread_url.format(latest))

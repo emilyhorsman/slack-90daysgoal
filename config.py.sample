@@ -2,3 +2,5 @@ user_agent = "UserClientChangeMe/v1 by /u/username"
 
 redis_url = "redis://localhost:6379:0"
 redis_prefix = "9dg"
+
+thread_url = "https://www.reddit.com/r/90daysgoal/comments/{}"
