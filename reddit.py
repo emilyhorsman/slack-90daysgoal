@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+
+from datetime import datetime
+import json
+import requests
 import redis
 import praw
 import config
@@ -31,7 +37,15 @@ def get_latest(k, redis_client):
         return latest[0]
 
 def post_to_slack(url):
-    pass
+    d = datetime.now().strftime("%b %-d ’%y *%-I:%M %p*")
+    msg = "Latest Daily Goal thread as of {}: {}".format(d, url)
+    payload = {
+        "text": msg,
+        "channe": config.bot_channel,
+        "icon_emoji": config.bot_emoji,
+        "username": config.bot_username
+        }
+    r = requests.post(config.slack_webhook, data=json.dumps(payload))
 
 r = redis.from_url(config.redis_url)
 k = "{}:threads".format(config.redis_prefix)

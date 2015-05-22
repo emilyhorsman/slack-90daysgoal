@@ -3,4 +3,12 @@ user_agent = "UserClientChangeMe/v1 by /u/username"
 redis_url = "redis://localhost:6379:0"
 redis_prefix = "9dg"
 
-thread_url = "https://www.reddit.com/r/90daysgoal/comments/{}"
+thread_url = "http://redd.it/{}"
+
+### Uncomment the line below for non-shortlink
+#thread_url = "https://www.reddit.com/r/90daysgoal/comments/{}"
+
+slack_webhook = "### INSERT SLACK WEBHOOK HERE ###"
+bot_channel = "#general"
+bot_emoji = ":heavy_check_mark:"
+bot_username = "90daysgoal Bot"
