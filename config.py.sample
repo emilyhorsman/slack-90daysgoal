@@ -1,0 +1,8 @@
+client_id = "### REDDIT APP ID ###"
+client_secret = "### REDDIT APP SECRET ###"
+user_agent = "UserClientChangeMe/v1 by /u/username"
+username = "### REDDIT USERNAME ###"
+password = "### REDDIT PASSWORD ###"
+
+redis_url = "redis://localhost:6379:0"
+redis_prefix = "9dg"
